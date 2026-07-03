@@ -1,18 +1,33 @@
 import type { Metadata } from "next";
 
+import { siteConfig } from "@/config/site";
 import { fraunces, inter } from "@/lib/fonts";
 import { CustomCursor } from "@/components/cursor/custom-cursor";
 import { SmoothScrollProvider } from "@/providers/smooth-scroll-provider";
+import { SiteNav } from "@/components/layout/site-nav";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Sleek by [Business Name] | Luxury Modular Kitchens, South Gujarat",
-    template: "%s | Sleek by [Business Name]",
+    default: `${siteConfig.name} · Luxury Modular Kitchens & Interiors | South Gujarat`,
+    template: `%s · ${siteConfig.name}`,
   },
-  description:
-    "Official Sleek (Asian Paints) distributor serving Surat, Bharuch, Navsari, Valsad & Vapi. Premium modular kitchens, wardrobes and interior hardware, crafted with 25+ years of dealership expertise.",
+  description: siteConfig.description,
+  openGraph: {
+    title: `${siteConfig.name} · Luxury Modular Kitchens & Interiors`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} · Luxury Modular Kitchens & Interiors`,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <SmoothScrollProvider>
           <CustomCursor />
+          <SiteNav />
           {children}
         </SmoothScrollProvider>
       </body>
