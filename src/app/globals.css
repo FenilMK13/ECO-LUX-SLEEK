@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme inline {
+  /* Surfaces */
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-surface: var(--surface);
+  --color-glass: var(--glass);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Typography */
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+
+  /* Accents */
+  --color-titanium: var(--titanium);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-silver: var(--silver);
+  --color-graphite: var(--graphite);
+
+  /* Fonts */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+
+  /* Easing */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --background: #fafaf8;
+  --background-secondary: #ffffff;
+  --surface: #f5f5f2;
+  --glass: rgba(255, 255, 255, 0.65);
+  --border: rgba(17, 17, 17, 0.08);
+  --border-strong: rgba(17, 17, 17, 0.14);
+
+  --foreground: #111111;
+  --muted: #555555;
+
+  --titanium: #8e8e8a;
+  --gold: #b6935f;
+  --gold-soft: #d7c19c;
+  --silver: #c7c7c2;
+  --graphite: #2b2b2a;
+
+  --shadow-luxury-sm: 0 1px 2px rgba(17, 17, 17, 0.04), 0 2px 8px rgba(17, 17, 17, 0.04);
+  --shadow-luxury-md: 0 4px 16px rgba(17, 17, 17, 0.06), 0 12px 32px rgba(17, 17, 17, 0.06);
+  --shadow-luxury-lg: 0 12px 32px rgba(17, 17, 17, 0.08), 0 32px 64px rgba(17, 17, 17, 0.08);
+  --shadow-glow-gold: 0 8px 40px rgba(182, 147, 95, 0.18);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--gold-soft);
+  color: var(--graphite);
+}
+
+/* Thin luxury scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 2px solid var(--background);
+}
+
+/* Glassmorphism surface */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Hide default cursor when custom cursor is active */
+.cursor-none,
+.cursor-none * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
